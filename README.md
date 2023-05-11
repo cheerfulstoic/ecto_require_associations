@@ -10,7 +10,7 @@ by adding `ecto_require_associations` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:ecto_require_associations, "~> 0.1.1"}
+    {:ecto_require_associations, "~> 0.1.2"}
   ]
 end
 ```
