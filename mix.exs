@@ -5,7 +5,7 @@ defmodule RequireAssociations.MixProject do
     [
       app: :ecto_require_associations,
       description: "Tool for validating that Ecto associations have been set",
-      version: "0.1.2",
+      version: "0.1.3",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -39,7 +39,7 @@ defmodule RequireAssociations.MixProject do
     [
       {:mix_test_watch, "~> 1.0", only: [:dev, :test], runtime: false},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
-      {:ecto, "~> 3.10"}
+      {:ecto, ">= 2.0.0"}
     ]
   end
 end
