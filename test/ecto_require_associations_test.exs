@@ -13,8 +13,6 @@ defmodule EctoRequireAssociationsTest do
     end
   end
 
-  # TODO: Test when association name is given that doesn't exist
-
   test "association does not exist" do
     assert_raise ArgumentError, "Association `does_not_exist` is not defined for the `EctoRequireAssociationsTest.Person` struct", fn ->
       EctoRequireAssociations.ensure!(%Person{}, :does_not_exist)
