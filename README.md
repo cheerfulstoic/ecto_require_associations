@@ -1,6 +1,6 @@
 # EctoRequireAssociations
 
-If you want to write purely functional functions based on Ecto data, you need to separate out your `Repo.preload`s.  This library helps you insert clean exceptions into those functions to make it clear when you have association dependencies.
+If you want to write purely functional functions based on Ecto data, you need to separate out your `Repo.preload`s.  This library helps you insert clean exceptions into those functions to make it clear when you have association dependencies.  See [this blog post TODO!!](---) for a more details discussion.
 
 ## Usage
 
