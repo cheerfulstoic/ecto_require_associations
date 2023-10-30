@@ -5,7 +5,7 @@ defmodule RequireAssociations.MixProject do
     [
       app: :ecto_require_associations,
       description: "Tool for validating that Ecto associations have been set",
-      version: "0.1.3",
+      version: "0.1.4",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       deps: deps(),

@@ -9,7 +9,7 @@ defmodule EctoRequireAssociationsTest do
 
       belongs_to :best_friend, Person
 
-      belongs_to :siblings, Person
+      has_many :siblings, Person
     end
   end
 
@@ -47,6 +47,10 @@ defmodule EctoRequireAssociationsTest do
 
     assert_raise ArgumentError, "Expected association to be set: `siblings`", fn ->
       EctoRequireAssociations.ensure!(%Person{}, "siblings")
+    end
+
+    assert_raise ArgumentError, "Expected association to be set: `siblings`", fn ->
+      EctoRequireAssociations.ensure!(%Person{}, siblings: :best_friend)
     end
 
     assert_raise ArgumentError, "Expected associations to be set: `best_friend`, `siblings`", fn ->

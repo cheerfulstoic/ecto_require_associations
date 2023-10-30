@@ -44,6 +44,8 @@ defmodule EctoRequireAssociations do
     |> association_names_not_loaded?(rest)
   end
 
+  defp assoc_loaded?(%Ecto.Association.NotLoaded{}, _), do: true
+
   defp assoc_loaded?(%struct_mod{} = record, association_name) do
     if Map.has_key?(struct(struct_mod), association_name) do
       record
