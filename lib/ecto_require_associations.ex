@@ -34,25 +34,31 @@ defmodule EctoRequireAssociations do
   end
 
   defp association_names_not_loaded?(records, [association_name]) do
-    !Enum.all?(records, & assoc_loaded?(&1, association_name))
+    !Enum.all?(records, &assoc_loaded?(&1, association_name))
   end
 
   defp association_names_not_loaded?(records, [association_name | rest]) do
     records
-    |> Enum.map(& Map.get(&1, association_name))
+    |> Enum.map(&Map.get(&1, association_name))
     |> List.flatten()
     |> association_names_not_loaded?(rest)
   end
 
   defp assoc_loaded?(%Ecto.Association.NotLoaded{}, _), do: true
+  defp assoc_loaded?(%{__struct__: Ash.NotLoaded}, _), do: true
 
   defp assoc_loaded?(%struct_mod{} = record, association_name) do
     if Map.has_key?(struct(struct_mod), association_name) do
       record
       |> Map.get(association_name)
-      |> Ecto.assoc_loaded?()
+      |> value_loaded?()
     else
-      raise ArgumentError, "Association `#{association_name}` is not defined for the `#{Macro.to_string(struct_mod)}` struct"
+      raise ArgumentError,
+            "Association `#{association_name}` is not defined for the `#{Macro.to_string(struct_mod)}` struct"
     end
   end
+
+  defp value_loaded?(%Ecto.Association.NotLoaded{}), do: false
+  defp value_loaded?(%{__struct__: Ash.NotLoaded}), do: false
+  defp value_loaded?(_), do: true
 end

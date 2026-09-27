@@ -5,14 +5,15 @@ defmodule RequireAssociations.MixProject do
     [
       app: :ecto_require_associations,
       description: "Tool for validating that Ecto associations have been set",
-      version: "0.1.4",
+      version: "0.2.0",
       elixir: "~> 1.14",
+      elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
       preferred_cli_env: [
         "test.watch": :test
-      ],
+      ]
     ]
   end
 
@@ -33,13 +34,15 @@ defmodule RequireAssociations.MixProject do
     ]
   end
 
-
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:mix_test_watch, "~> 1.0", only: [:dev, :test], runtime: false},
+      {:mix_test_watch, "~> 1.4", only: [:dev, :test], runtime: false},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:ecto, ">= 2.0.0"}
     ]
   end
+
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
 end
